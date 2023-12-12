@@ -1,0 +1,34 @@
+<section id="viewhotelDetails">
+    <h2>Details</h2>
+    <div class="hotel-ticket">
+        <div class="hotel-left">
+            <img src="{{hotelData.imageUrl}}" alt="" />
+        </div>
+        <div class="hotel-right">
+            <div>
+                <h3></h3>
+            </div>
+            <div>{{hotelData.name}}</div>
+            <p><span>Free rooms: {{hotelData.rooms}}</span></p>
+
+            {{#if isOwner}}
+                <a href="/hotels/edit/{{hotelData._id}}" class="edit">Edit</a>
+                {{!-- Form for the Delete button --}}
+                <form action="/hotels/delete/{{hotelData._id}}" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="remove">Delete</button>
+                </form>
+                {{!-- <a href="" class="remove">Delete</a> --}}
+            {{else}}
+                {{#if isBooked}}
+                    <p><span class="green">You already have booked a room</span></p>
+                {{else}}
+                <form action="/hotels/book/{{hotelData._id}}" method="POST">
+                    <input type="hidden" name="_method" value="BOOK">
+                    <button type="submit" class="book">Book</button>
+                </form>
+                {{/if}}
+            {{/if}}
+        </div>
+    </div>
+</section>
